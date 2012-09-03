@@ -1,0 +1,16 @@
+please see the docstring in the main script for more extensive documentation.
+for your convenience I copied some of it here:
+
+class MarkovChain(object):
+	"""
+	generate pseudo-random texts based on markov chains
+	
+	- calculates how likely a certain words follow a given word or phrase
+	- (use an existing text to determine the probabilities)
+	- start with an initial word or phrase
+	- do a random walk over the "space of words"
+	- when choosing the next word, respect the determined probabilities
+	- obtain a meaningless text that somewhat resemebles the original text
+	
+	For usage of the module/class, see the bottom of this file.
+	"""
