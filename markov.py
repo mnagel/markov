@@ -6,6 +6,7 @@
 # https://github.com/vedant/markov-chain-generator/
 
 import logging
+log = logging
 import random
 import sys
 
@@ -198,7 +199,6 @@ if __name__ == "__main__":
 		level  = logging.WARNING, 
 		stream = sys.stderr
 	)
-	log = logging
 	
 	# demo of the main script
 	if len(sys.argv) != 4:
