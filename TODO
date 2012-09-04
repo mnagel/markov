@@ -1,3 +1,5 @@
 umlauts, punctuation, special characters
 lilypond music integration
 license headers
+split example from markov.py
+display statistics, transition matrix
