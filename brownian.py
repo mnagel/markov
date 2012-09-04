@@ -17,6 +17,9 @@ for i in xrange(-n, n):
 	m.observe_string("%d %d" % (i, i-1))
 	m.observe_string("%d %d" % (i, i+1))
 
+m.observe_string("%d %d" % ( n,  n))
+m.observe_string("%d %d" % (-n, -n))
+
 start = ["0"]
 
 #result = m.random_walk_string(int(sys.argv[1]), start)
