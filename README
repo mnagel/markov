@@ -1,5 +1,27 @@
-please see the docstring in the main script for more extensive documentation.
-for your convenience I copied some of it here:
+MARKOV CHAINS
+-------------
+
+Please see the docstring in the main script for more extensive documentation.
+For your convenience I copied some of it below (section: usage).
+
+
+
+INSTALLATION
+------------
+
+Ubuntu:
+sudo apt-get install python-numpy python-matplotlib
+python brownian.py 300
+
+Mac OS:
+sudo port install py27-numpy py27-matplotlib
+sudo port select python python27
+/opt/local/bin/python2.7 brownian.py 300
+
+
+
+USAGE
+-----
 
 class MarkovChain(object):
 	"""
@@ -14,3 +36,23 @@ class MarkovChain(object):
 	
 	For usage of the module/class, see the bottom of this file.
 	"""
+
+
+
+LICENCE
+-------
+    markov.py -- generate pseudo-random texts based on markov chains
+    Copyright (C) 2012 Michael Nagel
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
