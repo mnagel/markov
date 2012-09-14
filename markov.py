@@ -20,8 +20,6 @@ class MarkovChain(object):
 	- do a random walk over the "space of words"
 	- when choosing the next word, respect the determined probabilities
 	- obtain a meaningless text that somewhat resemebles the original text
-	
-	For usage of the module/class, see the bottom of this file.
 	"""
 
 	def __init__(self, order):
@@ -190,26 +188,3 @@ class MarkovChain(object):
 		else:
 			return True
 
-# main script
-if __name__ == "__main__":
-
-	# setup logging
-	logging.basicConfig(
-		format = "%(filename)s:%(funcName)s: %(message)s",
-		level  = logging.WARNING, 
-		stream = sys.stderr
-	)
-	
-	# demo of the main script
-	if len(sys.argv) != 4:
-		print "usage:"
-		print "python markov.py $DATAFILE $ORDER $OUTLENGTH"
-		print "example:"
-		print "python markov.py data.txt 3 300"
-		sys.exit(1)
-	
-	m = MarkovChain(int(sys.argv[2]))
-	m.observe_file(sys.argv[1])
-	start = m.get_random_prestate()
-	result = m.random_walk_string(int(sys.argv[3]), start)
-	print result
