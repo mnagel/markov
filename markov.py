@@ -6,6 +6,7 @@
 # https://github.com/vedant/markov-chain-generator/
 
 from collections import defaultdict
+from itertools import product
 import logging
 log = logging
 import random
@@ -192,3 +193,45 @@ class MarkovChain(object):
 		else:
 			return True
 
+	def get_states(self):
+		"""
+		return all states known in this markov chain
+		"""
+		states = set()
+		for poststates in self.transitions.values():
+			for state in poststates:
+				states.add(state)
+		for prestate in self.transitions.keys():
+			for state in prestate:
+				states.add(state)
+		return sorted(states)
+
+	def print_matrix(self):
+		"""
+		print transition matrix
+
+		FIXME: this badly mixes logic and presentation
+		"""
+		states = self.get_states()
+		l = max([len(str(x)) for x in states])
+		fmt = "%%%ds" % max(5, l) # e.g. "%10s"
+		
+		# generate all possible prestates (#order * state)
+		prestates = product(states, repeat=self.order)
+		header = "pre\post".rjust(20) + " "
+		for post in states:
+			header = header + (fmt % post) # add poststate to line
+		print header
+		for prestate in prestates:
+			counts = defaultdict(float)
+			for poststate in self.transitions[tuple(prestate)]:
+				counts[poststate] = counts[poststate] + 1
+			linesum = sum(counts.values())
+			line = str(prestate).rjust(20) + " "
+			for poststate in states:
+				if linesum != 0 and counts[poststate] != 0 :
+					v = "%4.2f" % (counts[poststate] / linesum)
+				else:
+					v = "-"
+				line = line + (fmt % v)
+			print line + " ; n = " + str(int(linesum)).rjust(4)
