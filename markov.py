@@ -153,7 +153,7 @@ class MarkovChain(object):
 		log.debug("%d %s" % (length, str(init)))
 		self.check_prestate(init)
 		state = init
-		for i in xrange(length):
+		for i in range(length):
 			prestate = state[i : i + self.order]
 			next = self.random_step(prestate)
 			state.append(next)

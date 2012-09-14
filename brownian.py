@@ -13,7 +13,7 @@ if len(sys.argv) != 2:
 m = MarkovChain(1)
 
 n = 1000
-for i in xrange(-n, n):
+for i in range(-n + 1, n+1 - 1):
 	m.observe_string("%d %d" % (i, i-1))
 	m.observe_string("%d %d" % (i, i+1))
 
