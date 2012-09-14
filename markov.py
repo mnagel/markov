@@ -171,7 +171,11 @@ class MarkovChain(object):
 		"""
 		return a valid prestate in the correct list format
 		"""
-		prestate = random.choice(self.transitions.keys())
+		# only use prestates where a poststate is known
+		# other prestates might be created during iterations elsewhere
+		# because a defaultdict is used
+		prestates = [x for x in self.transitions.keys() if self.transitions[x]]
+		prestate = random.choice(prestates)
 		self.check_prestate(prestate)
 		return list(prestate)
 
