@@ -5,6 +5,7 @@
 # http://www.aiplayground.org/artikel/markov/
 # https://github.com/vedant/markov-chain-generator/
 
+from collections import defaultdict
 import logging
 log = logging
 import random
@@ -56,7 +57,7 @@ class MarkovChain(object):
 		...
 		
 		"""
-		self.transitions = {}
+		self.transitions = defaultdict(list)
 		self.order = order
 
 	def observe(self, prestate, poststate):
@@ -68,10 +69,7 @@ class MarkovChain(object):
 		"""
 		log.debug("%s -> %s" % (str(prestate), str(poststate)))
 		self.check_prestate(prestate)
-		if prestate in self.transitions:
-			self.transitions[prestate].append(poststate)
-		else:
-			self.transitions[prestate] = [poststate]
+		self.transitions[prestate].append(poststate)
 
 	def state_iterator(self, states):
 		"""
