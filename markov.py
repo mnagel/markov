@@ -137,6 +137,8 @@ class MarkovChain(object):
 		prestate = tuple(prestate) # make immutable
 		if not prestate in self.transitions:
 			raise Exception("reached dead end with prestate: %s" % (str(prestate)))
+		if not self.transitions[prestate]:
+			raise Exception("unknown prestate: %s" % (str(prestate)))
 		result = random.choice(self.transitions[prestate])
 		log.debug("%s -> %s" % (str(prestate), str(result)))
 		return result
