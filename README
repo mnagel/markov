@@ -3,6 +3,8 @@ MARKOV CHAINS
 
 Please see the docstring in the main script for more extensive documentation.
 For your convenience I copied some of it below (section: usage).
+There are some nice standalone examples of what you can do,
+see (section: examples) for more details.
 
 
 
@@ -11,12 +13,12 @@ INSTALLATION
 
 Ubuntu:
 sudo apt-get install python-numpy python-matplotlib
-python brownian.py 300
+./examples/brownian 300
 
 Mac OS:
 sudo port install py27-numpy py27-matplotlib
-sudo port select python python27
-/opt/local/bin/python2.7 brownian.py 300
+sudo port select --set python python27
+./examples/brownian 300
 
 
 
@@ -26,16 +28,83 @@ USAGE
 class MarkovChain(object):
 	"""
 	generate pseudo-random texts based on markov chains
-	
+
 	- calculates how likely a certain words follow a given word or phrase
 	- (use an existing text to determine the probabilities)
 	- start with an initial word or phrase
 	- do a random walk over the "space of words"
 	- when choosing the next word, respect the determined probabilities
 	- obtain a meaningless text that somewhat resemebles the original text
-	
-	For usage of the module/class, see the bottom of this file.
 	"""
+
+
+
+EXAMPLES
+--------
+
+brownian movement
+-----------------
+
+file: examples/brownian.py
+usage: examples/brownian 300
+A Brownian Movement is simulated. It requires numpy and matplotlib.
+Besides this, it is rather self-explanatory.
+There is one caveat:
+There are no calculations (+1/-1) when determining the next position.
+All possible movements are precalculated and stored explicitly.
+Some possible output files can be found in the examples/ directory.
+
+
+lorem ipsum
+-----------
+
+file: examples/lorem.ipsum.py
+usage: examples/lorem.ipsum 1 data/austen.txt 300
+A random text ("lorem ipsum") is created by doing a random walk over the state space of words.
+Transition probabilities are learned from a text file (e.g. data/austen.txt).
+The remaining parameters are the order of the markov chain (1) and the length of the text (300).
+Some possible input files can be found in the data/lorem.ipsum/ directory.
+Some possible output files can be found in the examples/ directory.
+
+
+algorithmic music
+-----------------
+
+file: examples/algorithmic.music.py
+usage: examples/algorithmic.music 1 examples/data/lilypond-template.ly examples/data/entchen.txt 300
+A random piece of music is created algorithmically by doing a random walk over the state space of sounds.
+This basically creates a lorem ipsum input file for the Lilypond music engraver.
+Lilypond creates a pdf and a midi file from the input.
+
+Lilypond is required and can be found here: http://www.lilypond.org/ and is packaged for linux.
+Install it to /Applications/ on Mac OS and somewhere.
+
+Frescobaldi is an editor for Lilypond files and allows to convert from relative to absolute mode.
+Absolute mode seems to work better in our case.
+Frescobaldi homepage: http://frescobaldi.org/
+Frescobaldi is packaged for linux, on Mac OS the following works:
+git clone git://github.com/wbsoft/frescobaldi.git
+sudo port install qt4-mac py27-pyqt4 py27-sip
+
+Midi playback is known to work out of the box with Quicktime 7, totem and timidity.
+midi-to-mp3 conversion works on linux (Ubuntu):
+sudo apt-get install timidity ffmpeg libavcodec-extra-53
+timidity example.midi -Ow -o - | ffmpeg -i - -acodec libmp3lame -ab 128k example.mp3
+
+Tux Guitar from http://www.tuxguitar.com.ar/ can open midi files and export to wav
+on Mac OS and Linux, but some corruption will occur with misplaced bars.
+
+Some possible input files can be found in the data/algorithmic.music/ directory.
+Some possible output files can be found in the examples/ directory.
+
+
+walkthrough
+-----------
+
+file: walkthrough.py
+usage: python walkthrough.py
+This file shows how the program works, step for step.
+It shows the learning process, the transition matrix, ...
 
 
 
