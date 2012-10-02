@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
+import random
+import re
+import string
+import subprocess
 import sys
+import os
+
 from markov import MarkovChain
 
 if len(sys.argv) != 5:
@@ -15,45 +21,37 @@ template = sys.argv[2]
 filename = sys.argv[3]
 length   = int(sys.argv[4])
 
+lilypond = "lilypond"
+if sys.platform.startswith("darwin"):
+	lilypond = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
+
 m = MarkovChain(order)
 m.observe_file(filename)
 start = m.get_random_prestate()
 result = m.random_walk_string(length, start)
 
 wrapper = open(template, 'r').read()
-
-import re
-import random
-import string
-import os
-
 output = re.sub("%%%CONTENT-GOES-HERE%%%", result, wrapper)
 
-randpart = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
+rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
 
 folder = os.path.dirname(template) + "/work/"
-file = randpart + ".ly"
-tempname = folder + file
-midiname = os.path.dirname(template) + "/work/" + randpart + ".midi"
+lilypondfile = rand + ".ly"
+lilypondpath = folder + lilypondfile
+midipath = folder + rand + ".midi"
 
-print tempname
-
-
-with open(tempname, "w+") as text_file:
+with open(lilypondpath, "w+") as text_file:
     text_file.write(output)
-    
-import sys
-lp = "lilypond"
-if sys.platform.startswith("darwin"):
-	lp = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
 
-cmd = ["bash", "-c", "cd %s && %s %s" % (folder, lp, file)]
-print "running"
-print " ".join(cmd)
+print "lilypond input file created: %s" % lilypondpath
 
-from subprocess import call
-call(cmd)
+cmd = ["bash", "-c", "cd %s && %s %s" % (folder, lilypond, lilypondfile)]
+print "running lilypond as: \n%s" % (" ".join(cmd))
 
-print "created"
+print "-" * 60
+subprocess.call(cmd)
+print "-" * 60
 
-call(["open", midiname])
+print "lilypond finished, opening midi"
+
+subprocess.call(["open", midipath])
