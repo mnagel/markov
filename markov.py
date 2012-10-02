@@ -76,9 +76,9 @@ class MarkovChain(object):
 		"""
 		iterate over all n-tupels in a list of states
 		
-		Yields a tuple (prestate, poststate)
+		Yields tuples (prestate, poststate)
 			where
-				prestate  - is tuple of states
+				prestate  - is a list of states
 				poststate - is a single state
 		
 		states - a list (not a tuple) of states
