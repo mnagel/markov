@@ -1,5 +1,5 @@
-umlauts, punctuation, special characters
-lilypond music integration
-license headers
-split example from markov.py
-display statistics, transition matrix, number of 1's
+add license headers
+display statistics, e.g. number of 1's
+handle umlauts, punctuation, special characters
+grep -ri --color todo ^.git
+set midi metadata for quicktime
