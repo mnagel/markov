@@ -71,7 +71,7 @@ algorithmic music
 -----------------
 
 file: examples/algorithmic.music.py
-usage: examples/algorithmic.music 1 examples/data/lilypond-template.ly examples/data/entchen.txt 300
+usage: examples/algorithmic.music 1 examples/data/lilypond-template.ly examples/data/entchen.ly 300
 A random piece of music is created algorithmically by doing a random walk over the state space of sounds.
 This basically creates a lorem ipsum input file for the Lilypond music engraver.
 Lilypond creates a pdf and a midi file from the input.

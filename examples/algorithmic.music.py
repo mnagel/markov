@@ -5,9 +5,9 @@ from markov import MarkovChain
 
 if len(sys.argv) != 5:
 	print "usage:"
-	print "python lorem.ipsum.py $DATAFILE $ORDER $OUTLENGTH"
+	print "python algorithmic.music.py $ORDER $TEMPLATEFILE $DATAFILE $OUTLENGTH"
 	print "example:"
-	print "python lorem.ipsum.py data.txt 3 300"
+	print "python algorithmic.music.py 1 data/lilypond-template.ly data/entchen.ly 300"
 	sys.exit(1)
 
 order    = int(sys.argv[1])
