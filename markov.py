@@ -221,7 +221,8 @@ class MarkovChain(object):
 		
 		# generate all possible prestates (#order * state)
 		prestates = product(states, repeat=self.order)
-		header = "pre\post".rjust(20) + " "
+		headerlen = max(8, l+5) # 8: pre\post, 5: ('foo',)
+		header = "pre\post".rjust(headerlen) + " "
 		for post in states:
 			header = header + (fmt % post) # add poststate to line
 		print header
@@ -230,7 +231,7 @@ class MarkovChain(object):
 			for poststate in self.transitions[tuple(prestate)]:
 				counts[poststate] = counts[poststate] + 1
 			linesum = sum(counts.values())
-			line = str(prestate).rjust(20) + " "
+			line = str(prestate).rjust(headerlen) + " "
 			for poststate in states:
 				if linesum != 0 and counts[poststate] != 0 :
 					v = "%4.2f" % (counts[poststate] / linesum)
