@@ -12,13 +12,13 @@ if len(sys.argv) != 2:
 
 m = MarkovChain(1)
 
-n = 1000
-for i in range(-n + 1, n+1 - 1):
-	m.observe_string("%d %d" % (i, i-1))
-	m.observe_string("%d %d" % (i, i+1))
+min, max = -999, +999
+for i in range(min, max+1):
+	m.observe(  (str(i),)  ,  str(i-1)  )
+	m.observe(  (str(i),)  ,  str(i+1)  )
 
-m.observe_string("%d %d" % ( n,  n))
-m.observe_string("%d %d" % (-n, -n))
+m.observe(  (str(min-1),)  ,  str(min-1)  )
+m.observe(  (str(max+1),)  ,  str(max+1)  )
 
 start = ["0"]
 
