@@ -1,43 +1,62 @@
 %{
-foo
+	foo
 %}
 
 \header{
-  title = "TITLE"
+	title = "TITLE"
 }
 
 va = {
-  
 %%%CONTENT-GOES-HERE%%%
-
 }
 
-music = \new StaffGroup <<
-      \new Staff {
-\set Staff.midiInstrument = "piano"
-\set Staff.instrumentName = #"Vc 1"
-\transpose c c { \va }
-      }
+% a list of instrument names can be found in
+% in the lilypond source code in
+% lilypond/scm/midi.scm
 
+music = \new StaffGroup <<
+	\new Staff {
+		\set Staff.midiInstrument = "cello"
+		\set Staff.instrumentName = #"Vc 1"
+		\transpose c c' { \va }
+	}
+
+	\new Staff {
+		\set Staff.midiInstrument = "acoustic grand"
+		\set Staff.instrumentName = #"Vc 2"
+		\transpose c c' { \va }
+	}
+
+%{
+	\new Staff {
+		\set Staff.midiInstrument = "acoustic guitar (nylon)"
+		\set Staff.instrumentName = #"Vc 3"
+		\transpose c c' { \va }
+	}
+%}
+
+	\new Staff {
+		\set Staff.midiInstrument = "flute"
+		\set Staff.instrumentName = #"Vc 4"
+		\transpose c c' { \va }
+	}
 >>
 
 \book {
-  \score {
-    \music
-    \layout {}
-  }
+	\score {
+		\music
+		\layout {}
+	}
 
-  \score {
-    \unfoldRepeats \music
-
-    \midi {
-    \context {
-      \Score
-      tempoWholesPerMinute = #(ly:make-moment 120 4)
-    }
-    }
-  }
+	\score {
+		\unfoldRepeats \music
+		\midi {
+			\context {
+				\Score
+				tempoWholesPerMinute = #(ly:make-moment 120 4)
+			}
+		}
+	}
 }
-
 
 \version "2.16.0"  % necessary for upgrading to future LilyPond versions.
