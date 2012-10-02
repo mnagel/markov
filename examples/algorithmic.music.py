@@ -41,6 +41,7 @@ folder = os.path.dirname(template) + "/work/"
 lilypondfile = rand + ".ly"
 lilypondpath = folder + lilypondfile
 midipath = folder + rand + ".midi"
+pdfpath = folder + rand + ".pdf"
 
 with open(lilypondpath, "w+") as text_file:
     text_file.write(output)
@@ -54,6 +55,7 @@ print "-" * 60
 subprocess.call(cmd)
 print "-" * 60
 
-print "lilypond finished, opening midi"
+print "lilypond finished, opening output files"
 
+subprocess.call(["open", pdfpath])
 subprocess.call(["open", midipath])
