@@ -209,6 +209,21 @@ class MarkovChain(object):
 				states.add(state)
 		return sorted(states)
 
+	def print_transitions(self):
+		"""
+		print transitions data structure
+		"""
+		states = self.get_states()
+		l = max([len(str(x)) for x in states])
+		headerlen = max(8, l+5) # 8: prestate, 5: ('foo',)
+		header = "prestate".rjust(headerlen) + " --> post"
+		print header
+		prestates = product(states, repeat=self.order)
+		for prestate in prestates:
+			prestring = str(prestate).rjust(headerlen)
+			poststring = str(self.transitions[prestate])
+			print "%s --> %s" % (prestring, poststring)
+
 	def print_matrix(self):
 		"""
 		print transition matrix
