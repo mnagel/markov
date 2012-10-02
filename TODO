@@ -3,3 +3,5 @@ display statistics, e.g. number of 1's
 handle umlauts, punctuation, special characters
 grep -ri --color todo ^.git
 set midi metadata for quicktime
+observe_string cyclic wraparound to stop dead ends
+check length of prestate in random_walk
