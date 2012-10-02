@@ -189,7 +189,10 @@ class MarkovChain(object):
 		prestate - a list or tuple to check
 		"""
 		if len(prestate) != self.order:
-			raise Exception("prestate is not of correct order")
+			raise Exception(
+				"prestate %s with order %d is not of correct order %d"
+					% (str(prestate), len(prestate), self.order)
+			)
 		else:
 			return True
 
