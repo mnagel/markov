@@ -17,27 +17,27 @@ va = {
 music = \new StaffGroup <<
 	\new Staff {
 		\set Staff.midiInstrument = "cello"
-		\set Staff.instrumentName = #"Vc 1"
+		\set Staff.instrumentName = "cello"
 		\transpose c c' { \va }
 	}
 
 	\new Staff {
 		\set Staff.midiInstrument = "acoustic grand"
-		\set Staff.instrumentName = #"Vc 2"
+		\set Staff.instrumentName = "piano"
 		\transpose c c' { \va }
 	}
 
 %{
 	\new Staff {
 		\set Staff.midiInstrument = "acoustic guitar (nylon)"
-		\set Staff.instrumentName = #"Vc 3"
+		\set Staff.instrumentName = "guitar"
 		\transpose c c' { \va }
 	}
 %}
 
 	\new Staff {
 		\set Staff.midiInstrument = "flute"
-		\set Staff.instrumentName = #"Vc 4"
+		\set Staff.instrumentName = "flute"
 		\transpose c c' { \va }
 	}
 >>
