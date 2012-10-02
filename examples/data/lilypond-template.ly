@@ -3,7 +3,7 @@
 %}
 
 \header{
-	title = "TITLE"
+	title = "%%%TITLE-GOES-HERE%%%"
 }
 
 va = {

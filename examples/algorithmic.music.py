@@ -30,8 +30,10 @@ m.observe_file(filename)
 start = m.get_random_prestate()
 result = m.random_walk_string(length, start)
 
-wrapper = open(template, 'r').read()
-output = re.sub("%%%CONTENT-GOES-HERE%%%", result, wrapper)
+output = open(template, 'r').read()
+title = "markov.py: %s @%d" % (os.path.basename(filename), order)
+output = re.sub("%%%TITLE-GOES-HERE%%%", title, output)
+output = re.sub("%%%CONTENT-GOES-HERE%%%", result, output)
 
 rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
 
