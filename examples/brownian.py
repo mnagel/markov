@@ -29,4 +29,7 @@ from pylab import *
 result = m.random_walk(int(sys.argv[1]), start)
 result = [int(x) for x in result]
 plot(result)
+title("markov.py: Brownian Movement with %s steps" % sys.argv[1], fontsize=60)
+xlabel("number of steps", fontsize=40)
+ylabel("distance from origin", fontsize=40)
 show()
