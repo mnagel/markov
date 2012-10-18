@@ -7,8 +7,6 @@ import subprocess
 import sys
 import os
 
-# from markov import MarkovChain
-
 """
 if len(sys.argv) != 5:
 	print "usage:"
@@ -23,28 +21,18 @@ template = sys.argv[1]
 filename = sys.argv[2]
 #length   = int(sys.argv[4])
 
-
 lilypond = "lilypond"
 if sys.platform.startswith("darwin"):
 	lilypond = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
-
-"""
-m = MarkovChain(order)
-m.observe_file(filename)
-start = m.get_random_prestate()
-result = m.random_walk_string(length, start)
-"""
 
 rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
 
 linestring = open(filename, "r").read()
 
 output = open(template, 'r').read()
-title = "plain %s %s" % (os.path.basename(filename), rand)
+title = "Lilypond: %s" % (os.path.basename(filename))
 output = re.sub("%%%TITLE-GOES-HERE%%%", title, output)
 output = re.sub("%%%CONTENT-GOES-HERE%%%", linestring, output)
-
-
 
 folder = os.path.dirname(template) + "/work/"
 lilypondfile = rand + ".ly"
