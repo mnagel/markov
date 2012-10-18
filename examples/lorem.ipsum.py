@@ -15,7 +15,7 @@ filename = sys.argv[2]
 length   = int(sys.argv[3])
 
 m = MarkovChain(order)
-m.observe_file(filename)
+m.observe_file(filename, True)
 start = m.get_random_prestate()
 result = m.random_walk_string(length, start)
 print result

@@ -90,12 +90,16 @@ class MarkovChain(object):
 			poststate = states[idx_start + self.order]
 			yield (prestate, poststate)
 
-	def observe_all(self, states):
+	def observe_all(self, states, cyclic):
 		"""
 		add all observations in a list of states
 		
 		states - a list (not a tuple) if states
+		cyclic - boolean, whether the states
+		should be assumed to wrap around cyclic
 		"""
+		if cyclic:
+			states.extend(states[0 : self.order])
 		log.debug("%s" % (str(states)))
 		for tup in self.state_iterator(states):
 			prestate = tup[0]
@@ -103,28 +107,32 @@ class MarkovChain(object):
 			poststate = tup[1]
 			self.observe(prestate, poststate)
 
-	def observe_string(self, string):
+	def observe_string(self, string, cyclic):
 		"""
 		add all observations in a string
 		
 		string - the string of observation.
 		The string is split at word boundaries
 		and each word is considered as the observation of a state.
+		cyclic - boolean, whether the states
+		should be assumed to wrap around cyclic
 		"""
 		string = string.lower()
 		log.debug("%s" % string)
-		self.observe_all(string.split())
+		self.observe_all(string.split(), cyclic)
 
-	def observe_file(self, filename):
+	def observe_file(self, filename, cyclic):
 		"""
 		load a string of observations from a file
 		
 		filename - path to the file to load
+		cyclic   - boolean, whether the states
+		should be assumed to wrap around cyclic
 		"""
 		log.debug("%s" % filename)
 		linestring = open(filename, "r").read()
 		linestring = linestring.lower()
-		self.observe_string(linestring)
+		self.observe_string(linestring, cyclic)
 
 	def random_step(self, prestate):
 		"""

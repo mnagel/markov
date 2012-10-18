@@ -26,7 +26,7 @@ if sys.platform.startswith("darwin"):
 	lilypond = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
 
 m = MarkovChain(order)
-m.observe_file(filename)
+m.observe_file(filename, True)
 start = m.get_random_prestate()
 result = m.random_walk_string(length, start)
 

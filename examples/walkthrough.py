@@ -24,7 +24,7 @@ m = MarkovChain(order)
 
 print "observing %s" % text
 spacer()
-m.observe_string(text)
+m.observe_string(text, True)
 print "TODO make logging verbose for observe()..."
 
 spacer()
