@@ -35,14 +35,16 @@ start = m.get_random_prestate()
 result = m.random_walk_string(length, start)
 """
 
+rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
+
 linestring = open(filename, "r").read()
 
 output = open(template, 'r').read()
-title = "plain %s" % (os.path.basename(filename))
+title = "plain %s %s" % (os.path.basename(filename), rand)
 output = re.sub("%%%TITLE-GOES-HERE%%%", title, output)
 output = re.sub("%%%CONTENT-GOES-HERE%%%", linestring, output)
 
-rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
+
 
 folder = os.path.dirname(template) + "/work/"
 lilypondfile = rand + ".ly"
