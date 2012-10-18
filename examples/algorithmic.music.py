@@ -22,8 +22,10 @@ filename = sys.argv[3]
 length   = int(sys.argv[4])
 
 lilypond = "lilypond"
+opencmd = "xdg-open"
 if sys.platform.startswith("darwin"):
 	lilypond = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
+	opencmd = "open"
 
 m = MarkovChain(order)
 m.observe_file(filename, True)
@@ -57,5 +59,5 @@ print "-" * 60
 
 print "lilypond finished, opening output files"
 
-subprocess.call(["open", pdfpath])
-subprocess.call(["open", midipath])
+subprocess.call([opencmd, pdfpath])
+subprocess.call([opencmd, midipath])
