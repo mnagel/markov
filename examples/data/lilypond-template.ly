@@ -1,3 +1,5 @@
+\language "deutsch"
+
 %{
 	foo
 %}
