@@ -224,7 +224,7 @@ class MarkovChain(object):
 		states = self.get_states()
 		l = max([len(str(x)) for x in states])
 		headerlen = max(8, l+5) # 8: prestate, 5: ('foo',)
-		header = "prestate".rjust(headerlen) + " --> post"
+		header = "prestate".rjust(headerlen) + " --> poststate"
 		print header
 		prestates = product(states, repeat=self.order)
 		for prestate in prestates:
