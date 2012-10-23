@@ -22,8 +22,10 @@ filename = sys.argv[2]
 #length   = int(sys.argv[4])
 
 lilypond = "lilypond"
+opencmd = "xdg-open"
 if sys.platform.startswith("darwin"):
 	lilypond = "/Applications/LilyPond.app/Contents/Resources/bin/lilypond"
+	opencmd = "open"
 
 rand = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(10))
 
@@ -54,5 +56,5 @@ print "-" * 60
 
 print "lilypond finished, opening output files"
 
-subprocess.call(["xdg-open", pdfpath])
-subprocess.call(["xdg-open", midipath])
+subprocess.call([opencmd, pdfpath])
+subprocess.call([opencmd, midipath])
