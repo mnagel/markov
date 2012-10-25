@@ -1,2 +1,10 @@
-c8 d e f g4 g a8 a a a g2 a8 a a a g2 f8 f f f e4 e g8 g g g c2
-c8 d e f g4 g a8 a a a g2 a8 a a a g2 f8 f f f e4 e g8 g g g c2
+c8 d8 e8 f8 g4 g4
+a8 a8 a8 a8 g2
+a8 a8 a8 a8 g2
+f8 f8 f8 f8 e4 e4
+g8 g8 g8 g8 c2
+c8 d8 e8 f8 g4 g4
+a8 a8 a8 a8 g2
+a8 a8 a8 a8 g2
+f8 f8 f8 f8 e4 e4
+g8 g8 g8 g8 c2
