@@ -30,7 +30,50 @@ if sys.platform.startswith("darwin"):
 m = MarkovChain(order)
 m.observe_file(filename, True)
 start = m.get_random_prestate()
-result = m.random_walk_string(length, start)
+result = m.random_walk(length, start)
+
+
+def tactify(tuplelist, resolution, tact):
+  # tuplelist: eingabeliste
+  # resolution: kleinste note
+  # tact: wieviele resolution-noten einen takt geben (ignored)
+
+  # immer 4/4 Takt
+  takt = resolution # in 16teln
+  count = 0
+  output = []
+
+  pos = 0
+
+  copy = tuplelist[:] # copy, so we do not destoy
+  tuplelist = copy
+
+  while pos < len(tuplelist):
+    t = tuplelist[pos]
+    matchObj = re.match(r'([^0-9]*)([0-9]*)', t)
+    tname = matchObj.group(1)
+    print t
+    tleng = takt / int(matchObj.group(2))
+    print t, tname, str(tleng)
+    if count + tleng <= takt:
+      output.append(tname + str(takt/tleng))
+      if count + tleng == takt:
+        count = 0
+      else:
+        count = count + tleng
+    else:
+      tleng = tleng/2
+      print "split to " + str(tleng)
+      tuplelist[pos] = tname + str(takt/tleng)
+      tuplelist.insert(pos+1, tuplelist[pos])
+      pos -= 1 # keine Note endgueltig verarbeitet
+    pos += 1
+  return output
+
+m.print_matrix()
+print result
+result = tactify(result, 16, None)
+result = " ".join(result)
 
 output = open(template, 'r').read()
 title = "markov.py: %s @%d" % (os.path.basename(filename), order)
