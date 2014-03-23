@@ -59,7 +59,7 @@ lorem ipsum
 -----------
 
 file: examples/lorem.ipsum.py
-usage: examples/lorem.ipsum 1 data/austen.txt 300
+usage: examples/lorem.ipsum 1 examples/data/austen.txt 300
 A random text ("lorem ipsum") is created by doing a random walk over the state space of words.
 Transition probabilities are learned from a text file (e.g. data/austen.txt).
 The remaining parameters are the order of the markov chain (1) and the length of the text (300).
